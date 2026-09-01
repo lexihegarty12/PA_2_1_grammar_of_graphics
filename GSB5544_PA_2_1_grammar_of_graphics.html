@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="GSB5544_PA_2_1_grammar_of_graphics_files/libs/clipboard/clipboard.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="GSB5544_PA_2_1_grammar_of_graphics_files/libs/clipboard/clipboard.min.js"></script>
 <script src="GSB5544_PA_2_1_grammar_of_graphics_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="GSB5544_PA_2_1_grammar_of_graphics_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="GSB5544_PA_2_1_grammar_of_graphics_files/libs/quarto-html/popper.min.js"></script>
@@ -75,6 +75,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="GSB5544_PA_2_1_grammar_of_graphics_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="GSB5544_PA_2_1_grammar_of_graphics_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="GSB5544_PA_2_1_grammar_of_graphics_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -108,58 +111,695 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="cars-data">Cars Data</h2>
 <p>The Palmer Penguins dataset had a variety of column types with which to explore some nice visualizations. The <code>mtcars</code> dataset is another popular dataset for doing some simple data work, but does not contain the same types of variables.</p>
 <p>Run the following code to load the <code>mtcars</code> dataset and explore the observations and variables contained within. To learn more about this dataset check out <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">this site</a></p>
-<div id="cell-3" class="cell">
+<div id="cell-3" class="cell" data-execution_count="50">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>, <span class="st">"datasets"</span>, cache<span class="op">=</span><span class="va">True</span>).data</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(mtcars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span>  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mtcars <span class="op">=</span> sm.datasets.get_rdataset(<span class="st">"mtcars"</span>, <span class="st">"datasets"</span>, cache<span class="op">=</span><span class="va">True</span>).data</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(mtcars)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="cell-4" class="cell">
+<div id="cell-4" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">mpg</th>
+<th data-quarto-table-cell-role="th">cyl</th>
+<th data-quarto-table-cell-role="th">disp</th>
+<th data-quarto-table-cell-role="th">hp</th>
+<th data-quarto-table-cell-role="th">drat</th>
+<th data-quarto-table-cell-role="th">wt</th>
+<th data-quarto-table-cell-role="th">qsec</th>
+<th data-quarto-table-cell-role="th">vs</th>
+<th data-quarto-table-cell-role="th">am</th>
+<th data-quarto-table-cell-role="th">gear</th>
+<th data-quarto-table-cell-role="th">carb</th>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">rownames</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Mazda RX4</th>
+<td>21.0</td>
+<td>6</td>
+<td>160.0</td>
+<td>110</td>
+<td>3.90</td>
+<td>2.620</td>
+<td>16.46</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Mazda RX4 Wag</th>
+<td>21.0</td>
+<td>6</td>
+<td>160.0</td>
+<td>110</td>
+<td>3.90</td>
+<td>2.875</td>
+<td>17.02</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Datsun 710</th>
+<td>22.8</td>
+<td>4</td>
+<td>108.0</td>
+<td>93</td>
+<td>3.85</td>
+<td>2.320</td>
+<td>18.61</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Hornet 4 Drive</th>
+<td>21.4</td>
+<td>6</td>
+<td>258.0</td>
+<td>110</td>
+<td>3.08</td>
+<td>3.215</td>
+<td>19.44</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Hornet Sportabout</th>
+<td>18.7</td>
+<td>8</td>
+<td>360.0</td>
+<td>175</td>
+<td>3.15</td>
+<td>3.440</td>
+<td>17.02</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Valiant</th>
+<td>18.1</td>
+<td>6</td>
+<td>225.0</td>
+<td>105</td>
+<td>2.76</td>
+<td>3.460</td>
+<td>20.22</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Duster 360</th>
+<td>14.3</td>
+<td>8</td>
+<td>360.0</td>
+<td>245</td>
+<td>3.21</td>
+<td>3.570</td>
+<td>15.84</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Merc 240D</th>
+<td>24.4</td>
+<td>4</td>
+<td>146.7</td>
+<td>62</td>
+<td>3.69</td>
+<td>3.190</td>
+<td>20.00</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Merc 230</th>
+<td>22.8</td>
+<td>4</td>
+<td>140.8</td>
+<td>95</td>
+<td>3.92</td>
+<td>3.150</td>
+<td>22.90</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Merc 280</th>
+<td>19.2</td>
+<td>6</td>
+<td>167.6</td>
+<td>123</td>
+<td>3.92</td>
+<td>3.440</td>
+<td>18.30</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Merc 280C</th>
+<td>17.8</td>
+<td>6</td>
+<td>167.6</td>
+<td>123</td>
+<td>3.92</td>
+<td>3.440</td>
+<td>18.90</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Merc 450SE</th>
+<td>16.4</td>
+<td>8</td>
+<td>275.8</td>
+<td>180</td>
+<td>3.07</td>
+<td>4.070</td>
+<td>17.40</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Merc 450SL</th>
+<td>17.3</td>
+<td>8</td>
+<td>275.8</td>
+<td>180</td>
+<td>3.07</td>
+<td>3.730</td>
+<td>17.60</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Merc 450SLC</th>
+<td>15.2</td>
+<td>8</td>
+<td>275.8</td>
+<td>180</td>
+<td>3.07</td>
+<td>3.780</td>
+<td>18.00</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Cadillac Fleetwood</th>
+<td>10.4</td>
+<td>8</td>
+<td>472.0</td>
+<td>205</td>
+<td>2.93</td>
+<td>5.250</td>
+<td>17.98</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Lincoln Continental</th>
+<td>10.4</td>
+<td>8</td>
+<td>460.0</td>
+<td>215</td>
+<td>3.00</td>
+<td>5.424</td>
+<td>17.82</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Chrysler Imperial</th>
+<td>14.7</td>
+<td>8</td>
+<td>440.0</td>
+<td>230</td>
+<td>3.23</td>
+<td>5.345</td>
+<td>17.42</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Fiat 128</th>
+<td>32.4</td>
+<td>4</td>
+<td>78.7</td>
+<td>66</td>
+<td>4.08</td>
+<td>2.200</td>
+<td>19.47</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Honda Civic</th>
+<td>30.4</td>
+<td>4</td>
+<td>75.7</td>
+<td>52</td>
+<td>4.93</td>
+<td>1.615</td>
+<td>18.52</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Toyota Corolla</th>
+<td>33.9</td>
+<td>4</td>
+<td>71.1</td>
+<td>65</td>
+<td>4.22</td>
+<td>1.835</td>
+<td>19.90</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Toyota Corona</th>
+<td>21.5</td>
+<td>4</td>
+<td>120.1</td>
+<td>97</td>
+<td>3.70</td>
+<td>2.465</td>
+<td>20.01</td>
+<td>1</td>
+<td>0</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Dodge Challenger</th>
+<td>15.5</td>
+<td>8</td>
+<td>318.0</td>
+<td>150</td>
+<td>2.76</td>
+<td>3.520</td>
+<td>16.87</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">AMC Javelin</th>
+<td>15.2</td>
+<td>8</td>
+<td>304.0</td>
+<td>150</td>
+<td>3.15</td>
+<td>3.435</td>
+<td>17.30</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Camaro Z28</th>
+<td>13.3</td>
+<td>8</td>
+<td>350.0</td>
+<td>245</td>
+<td>3.73</td>
+<td>3.840</td>
+<td>15.41</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Pontiac Firebird</th>
+<td>19.2</td>
+<td>8</td>
+<td>400.0</td>
+<td>175</td>
+<td>3.08</td>
+<td>3.845</td>
+<td>17.05</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Fiat X1-9</th>
+<td>27.3</td>
+<td>4</td>
+<td>79.0</td>
+<td>66</td>
+<td>4.08</td>
+<td>1.935</td>
+<td>18.90</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Porsche 914-2</th>
+<td>26.0</td>
+<td>4</td>
+<td>120.3</td>
+<td>91</td>
+<td>4.43</td>
+<td>2.140</td>
+<td>16.70</td>
+<td>0</td>
+<td>1</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Lotus Europa</th>
+<td>30.4</td>
+<td>4</td>
+<td>95.1</td>
+<td>113</td>
+<td>3.77</td>
+<td>1.513</td>
+<td>16.90</td>
+<td>1</td>
+<td>1</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Ford Pantera L</th>
+<td>15.8</td>
+<td>8</td>
+<td>351.0</td>
+<td>264</td>
+<td>4.22</td>
+<td>3.170</td>
+<td>14.50</td>
+<td>0</td>
+<td>1</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Ferrari Dino</th>
+<td>19.7</td>
+<td>6</td>
+<td>145.0</td>
+<td>175</td>
+<td>3.62</td>
+<td>2.770</td>
+<td>15.50</td>
+<td>0</td>
+<td>1</td>
+<td>5</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Maserati Bora</th>
+<td>15.0</td>
+<td>8</td>
+<td>301.0</td>
+<td>335</td>
+<td>3.54</td>
+<td>3.570</td>
+<td>14.60</td>
+<td>0</td>
+<td>1</td>
+<td>5</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">Volvo 142E</th>
+<td>21.4</td>
+<td>4</td>
+<td>121.0</td>
+<td>109</td>
+<td>4.11</td>
+<td>2.780</td>
+<td>18.60</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 <p>The statement “the <code>mtcars</code> dataset does not contain the same types of variables as the penguins dataset” is a little true and a little false. There are no variables that contain text values, BUT there are variables that it makes sense to consider categorical variables. In most situations, it makes sense to treat the values of categorical variables as text values instead of numeric values.</p>
 <p>Some of these variables, like the <code>cyl</code> variable, have numeric values that actually make sense as numbers (i.e.&nbsp;the number of cylinders in the engine). However, it doesn’t make the most sense to “do math” with this type of variable (e.g.&nbsp;take averages and such) because there are so few different value this can take on AND they’re an explicit choice made by the car manufacturer. So, it makes more sense to treat the <code>cyl</code> variable as a categorical variable despite it having numeric values.</p>
 <p>You will need to keep these kinds of nuances about data in mind as you work with an increasing variety and richness of data, and do more complex things with them</p>
 <p>Use the <code>astype()</code> method to convert the categorical variables of the <code>mtcars</code> (df) dataset to have text values in the code chunk below. We’ve done one for you!</p>
-<div id="cell-6" class="cell">
+<div id="cell-6" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"am"</span>] <span class="op">=</span> df[<span class="st">"am"</span>].astype(<span class="bu">str</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the other variables below</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the other variables below</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"cyl"</span>] <span class="op">=</span> df[<span class="st">"cyl"</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"vs"</span>] <span class="op">=</span> df[<span class="st">"vs"</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"gear"</span>] <span class="op">=</span> df[<span class="st">"gear"</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"carb"</span>] <span class="op">=</span> df[<span class="st">"carb"</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>df.dtypes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+<pre><code>mpg     float64
+cyl         str
+disp    float64
+hp        int64
+drat    float64
+wt      float64
+qsec    float64
+vs          str
+am          str
+gear        str
+carb        str
+dtype: object</code></pre>
+</div>
 </div>
 <p>If you print out your new dataset, is it clear that the variables have been converted to text values? If so, how can you tell?</p>
+<p>I can tell because the type is str</p>
 <p>Let’s see how <code>plotnine</code> treats these variables.</p>
 <p>1. Create side-by-side boxplots of the <code>mpg</code> variable by the different values of the <code>am</code> variable.</p>
-<div id="cell-9" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-9" class="cell" data-execution_count="57">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mtcars["am"] = mtcars["am"].astype("category")</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(ggplot(df, aes(x<span class="op">=</span><span class="st">"am"</span>, y<span class="op">=</span><span class="st">"mpg"</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_boxplot()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="GSB5544_PA_2_1_grammar_of_graphics_files/figure-html/cell-5-output-1.png" width="660" height="499" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>2. What happens if you convert the <code>am</code> variable back to float values and then try to create the same plot as in the previous part? Explain the differences between the two plots.</p>
-<div id="cell-11" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Before there was two boxplots, now there is one. because in the first example, we had two distinct categories of am. But when we treated it as float, am is continous on the x-axis which doesn’t make sense when we are looking at the disrbution of mpg.</p>
+<div id="cell-11" class="cell" data-execution_count="58">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"am"</span>] <span class="op">=</span> df[<span class="st">"am"</span>].astype(<span class="st">"float"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>(ggplot(df, aes(x<span class="op">=</span><span class="st">"am"</span>, y<span class="op">=</span><span class="st">"mpg"</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_boxplot()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="GSB5544_PA_2_1_grammar_of_graphics_files/figure-html/cell-6-output-1.png" width="660" height="499" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>3. Create overlaid histograms of the <code>hp</code> variable for the different values of the <code>cyl</code> variable.</p>
-<div id="cell-13" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-13" class="cell" data-execution_count="59">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mtcars["cyl"] = mtcars["cyl"].astype("category")</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>(ggplot(df, aes(x <span class="op">=</span> <span class="st">"hp"</span>, fill <span class="op">=</span> <span class="st">"cyl"</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_density(alpha <span class="op">=</span> <span class="fl">0.8</span>)       <span class="co"># alpha = transparency, 0 (invisible) to 1 (solid)</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="GSB5544_PA_2_1_grammar_of_graphics_files/figure-html/cell-7-output-1.png" width="660" height="499" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>4. What happens if you convert the <code>cyl</code> variable back to float values and then try to create the same plot as in the previous part? Explain the differences between the two plots.</p>
-<div id="cell-15" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ggplot doesn’t do different histograms for a coninuous variables</p>
+<div id="cell-15" class="cell" data-execution_count="60">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="st">"cyl"</span>] <span class="op">=</span> mtcars[<span class="st">"cyl"</span>].astype(<span class="st">"float"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>(ggplot(mtcars, aes(x <span class="op">=</span> <span class="st">"hp"</span>, fill <span class="op">=</span> <span class="st">"cyl"</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_density(alpha <span class="op">=</span> <span class="fl">0.8</span>)       <span class="co"># alpha = transparency, 0 (invisible) to 1 (solid)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># now there is only one line</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="GSB5544_PA_2_1_grammar_of_graphics_files/figure-html/cell-8-output-1.png" width="660" height="499" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>5. Choose a new <code>geometry</code> from the <a href="https://www.data-to-viz.com/">data-to-viz website</a> or look in the <a href="https://python-graph-gallery.com/plotnine/"><code>plotnine</code> graph gallery</a> for a graph that you’d like to explore using the <code>mtcars</code> dataset, and then create that graph. Share your graph with a classmate and discuss it’s advantages and disadvantages.</p>
-<div id="cell-17" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An advantage is that you can compare multiple varaibles in one graph, but a disadvantage is that mutlipe variables makes the graph more complicated.</p>
+<div id="cell-17" class="cell" data-execution_count="42">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="st">"cyl"</span>] <span class="op">=</span> mtcars[<span class="st">"cyl"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>(ggplot(mtcars, aes(x<span class="op">=</span><span class="st">"wt"</span>, y<span class="op">=</span><span class="st">"mpg"</span>, size<span class="op">=</span><span class="st">"hp"</span>, color<span class="op">=</span><span class="st">"cyl"</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_point(alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> labs(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>     title<span class="op">=</span><span class="st">"MPG vs Weight, sized by Horsepower, colored by Cylinders"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>     x<span class="op">=</span><span class="st">"Weight (1000 lbs)"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>     y<span class="op">=</span><span class="st">"Miles per Gallon"</span>,</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>     size<span class="op">=</span><span class="st">"Horsepower"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>     color<span class="op">=</span><span class="st">"Cylinders"</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a> )</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> theme_minimal()</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="GSB5544_PA_2_1_grammar_of_graphics_files/figure-html/cell-9-output-1.png" width="647" height="487" class="figure-img"></p>
+</figure>
 </div>
-<p>6. Repeat the previous part for another graph that you’d like to explore using the <code>mtcars</code> dataset, and then create that graph. Share your graph with a classmate and discuss it’s advantages and disadvantages.</p>
-<div id="cell-19" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>6. Repeat the previous part for another graph that you’d like to explore using the <code>mtcars</code> dataset, and then create that graph. Share your graph with a classmate and discuss it’s advantages and disadvantages. An advantage of the violin plot is you can see the distrubtion and denisity at different values of mpg. but you can not see where individual data points are.</p>
+<div id="cell-19" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="st">"cyl"</span>] <span class="op">=</span> mtcars[<span class="st">"cyl"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>(ggplot(mtcars, aes(x<span class="op">=</span><span class="st">"cyl"</span>, y<span class="op">=</span><span class="st">"mpg"</span>, fill<span class="op">=</span><span class="st">"cyl"</span>))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_violin()</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> labs(</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>     title<span class="op">=</span><span class="st">"Distribution of MPG by Cylinder Count"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>     x<span class="op">=</span><span class="st">"Cylinders"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>     y<span class="op">=</span><span class="st">"Miles per Gallon"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>     fill<span class="op">=</span><span class="st">"Cylinders"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a> )</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> theme_minimal()</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="GSB5544_PA_2_1_grammar_of_graphics_files/figure-html/cell-10-output-1.png" width="647" height="487" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="fev-data" class="level2">
 <h2 class="anchored" data-anchor-id="fev-data">FEV Data</h2>
 <p>(You saw this data set in <a href="https://kevin-davisross.quarto.pub/gsb518-notes/hw-09.html#problem-3">GSB 518</a>.) Do non-smokers have better lungs than smokers? One measure of lung function is forced expiratory volume (FEV), the amount of air (in liters) an individual can exhale in the first second of forceful breath. Larger values of FEV are indicative of better functioning lungs. In a study, FEV was measured for a group of 654 subjects, along with whether they smoked and other variables like age (years). <a href="https://raw.githubusercontent.com/kevindavisross/data301/refs/heads/main/data/FEV.csv">Here is the data.</a></p>
 <p><a href="https://drive.google.com/file/d/1dm7U1cpVpHrbNZrBymOdmtkhMX3U7BwU/view?usp=sharing">This plot</a> was made using <code>plotly</code>. Use AI to help reproduce it using <code>plotnine</code>. Think in terms of the grammar of graphics and the design of the plot and write prompts like “The x-axis is mapped to Age”. It might help to <a href="https://ds-ml-with-python.github.io/Course-Textbook/02-plotnine.html#try-it-out">try the two practice activities in Section 3.6.3 first</a>. (Hint: this is really 3 separate plots. Consider using the <code>patchworklib</code> package, which you need to install in Colab space first.)</p>
-<div id="cell-21" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-21" class="cell" data-execution_count="61">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter your code here</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Load FEV dataset (commonly available online)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>fev <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/kevindavisross/data301/refs/heads/main/data/FEV.csv"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Expecting columns like: Age, FEV, Smoking (or similar) - adjust names as needed</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename for clarity if necessary, e.g.:</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># fev = fev.rename(columns={"smoking": "Smoking status"})</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up JointGrid</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.JointGrid(data<span class="op">=</span>fev, x<span class="op">=</span><span class="st">"Age (months)"</span>, y<span class="op">=</span><span class="st">"FEV"</span>, hue<span class="op">=</span><span class="st">"Smoking status"</span>, height<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>g.plot_joint(sns.scatterplot, alpha<span class="op">=</span><span class="fl">0.7</span>, s<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>g.plot_marginals(sns.histplot, multiple<span class="op">=</span><span class="st">"stack"</span>, kde<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> status, color <span class="kw">in</span> <span class="bu">zip</span>(fev[<span class="st">"Smoking status"</span>].unique(), sns.color_palette()):</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>    subset <span class="op">=</span> fev[fev[<span class="st">"Smoking status"</span>] <span class="op">==</span> status]</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    sns.regplot(</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>subset, x<span class="op">=</span><span class="st">"Age (months)"</span>, y<span class="op">=</span><span class="st">"FEV"</span>,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>        scatter<span class="op">=</span><span class="va">False</span>, ax<span class="op">=</span>g.ax_joint,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span>status, color<span class="op">=</span>color</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>g.ax_joint.set_xlabel(<span class="st">"Age (months)"</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>g.ax_joint.set_ylabel(<span class="st">"FEV"</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>g.ax_joint.legend(title<span class="op">=</span><span class="st">"Smoking status"</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="GSB5544_PA_2_1_grammar_of_graphics_files/figure-html/cell-11-output-1.png" width="776" height="790" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 <section id="olympic-mens-gymnastics-data" class="level2">
@@ -233,12 +873,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Create a new data frame with the scores in long format, with columns labeled “Event” and “Score”. There are a few ways to do this, so see what you can find!</p>
-<div id="cell-25" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cell-25" class="cell" data-execution_count="37">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gym <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/mshsu/probasets/refs/heads/main/data/OlympicAllAround.csv"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>gym.head()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>gym_long <span class="op">=</span> gym.reset_index().melt(</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span><span class="st">"Gymnast"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    value_vars<span class="op">=</span>[<span class="st">"Floor Exercise"</span>, <span class="st">"Pommelled Horse"</span>, <span class="st">"Rings"</span>, <span class="st">"Horse Vault"</span>, <span class="st">"Parallel Bars"</span>, <span class="st">"Horizontal Bar"</span>],</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">"event"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">"score"</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>gym_long.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Gymnast</th>
+<th data-quarto-table-cell-role="th">event</th>
+<th data-quarto-table-cell-role="th">score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>Danell Leyva</td>
+<td>Floor Exercise</td>
+<td>15.100</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>David Belyavsky</td>
+<td>Floor Exercise</td>
+<td>15.100</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>Fabian HambÃ¼chen</td>
+<td>Floor Exercise</td>
+<td>15.133</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>John Orozco</td>
+<td>Floor Exercise</td>
+<td>15.166</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>Kristian Thomas</td>
+<td>Floor Exercise</td>
+<td>15.366</td>
+</tr>
+</tbody>
+</table>
+
 </div>
-<p>2. Now create a graphic which summarizes the distribution of scores across events and years, and any other features you want to add. Be creative! Share your graph with a classmate and discuss why you designed it the way you did.</p>
-<div id="cell-27" class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>2. Now create a graphic which summarizes the distribution of scores across events and years, and any other features you want to add. Be creative! Share your graph with a classmate and discuss why you designed it the way you did. I added the jitter on my boxplot so you can see exactly where the data points lie.</p>
+<div id="cell-27" class="cell" data-execution_count="62">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># YOUR CODE HERE</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>gym_long[<span class="st">"event"</span>] <span class="op">=</span> gym_long[<span class="st">"event"</span>].astype(<span class="st">"category"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>gym_long[<span class="st">"score"</span>] <span class="op">=</span> gym_long[<span class="st">"score"</span>].astype(<span class="st">"float"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>(ggplot(gym_long, aes(x<span class="op">=</span><span class="st">"event"</span>, y<span class="op">=</span><span class="st">"score"</span>, fill<span class="op">=</span><span class="st">"event"</span>))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_boxplot(outlier_shape<span class="op">=</span><span class="st">""</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> geom_jitter(width<span class="op">=</span><span class="fl">0.15</span>, alpha<span class="op">=</span><span class="fl">0.4</span>, size<span class="op">=</span><span class="fl">1.5</span>, color<span class="op">=</span><span class="st">"black"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> labs(</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>     title<span class="op">=</span><span class="st">"Distribution of Scores by Event"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>     x<span class="op">=</span><span class="st">"Event"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>     y<span class="op">=</span><span class="st">"Score"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>     fill<span class="op">=</span><span class="st">"Event"</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a> )</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> theme_minimal()</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a> <span class="op">+</span> theme(</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>     axis_text_x<span class="op">=</span>element_text(rotation<span class="op">=</span><span class="dv">45</span>, hjust<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>     legend_position<span class="op">=</span><span class="st">"none"</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a> )</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/opt/anaconda3/lib/python3.14/site-packages/plotnine/layer.py:293: PlotnineWarning: stat_boxplot : Removed 169 rows containing non-finite values.
+/opt/anaconda3/lib/python3.14/site-packages/plotnine/layer.py:374: PlotnineWarning: geom_jitter : Removed 169 rows containing missing values.</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="GSB5544_PA_2_1_grammar_of_graphics_files/figure-html/cell-13-output-2.png" width="647" height="487" class="figure-img"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 
